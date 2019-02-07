@@ -35,14 +35,25 @@ Vue.mixin(AsyncFilterMixin)
 
 ## Usage
 
-Each asynchronous datum needs a unique key as a parameter to the filter to register it with the component. The keys are scoped to the component. This is to prevent duplication on rerender, since all filters are re-evaluated each time the component renders. All observables are unsubscribed from in the `beforeDestroy` hook of the vue component they are used in.
+The async filter requires a unique 'key' parameter
+  - keys are scoped to the component
+  - This is to prevent duplication on rerender, since all filters are re-evaluated each time the component renders
+
+The async filter returns null while waiting for the first value. You can use the `||` operator to pass in a fallback value
+
+Filters can only be used in mustache syntax currently. If you wish to use asynchronous data in a directive, use the $async function
+  - First parameter is the asynchronous datum, the second parameter is the key
+
+All observables are unsubscribed from in the `beforeDestroy` hook of the vue component they are used in.
 
 ```html
 <template>
   <div>
     <h1>{{ interval | async('interval') }}</h1>
-    <h1>{{ getIntervalWithFactor(3) | async('interval-factor-3') }}</h1>
-    <h1>{{ getTimeoutPromise('Promise has resolved') | async('timeout-promise') }}</h1>
+    <h1>{{ getTimeoutPromise('Promise has resolved') | async('timeout-promise') || 'loading...' }}</h1>
+    <h1 v-for="factor in $async(factors, 'factors')">
+      {{ getIntervalWithFactor(factor) | async('interval-factor-' + factor) }}
+    </h1>
   </div>
 </template>
 ```
@@ -55,7 +66,11 @@ import { AsyncFilterMixin } from '@tygr/vue-async-filter'
 export default {
   mixins: [AsyncFilterMixin],
   data: () => ({
-    interval: interval(1000)
+    interval: interval(1000),
+    factors: new Promise(resolve => setTimeout(
+      () => resolve([6, 7, 8, 9]),
+      2000
+    ))
   }),
   methods: {
     getIntervalWithFactor(factor) {
@@ -82,7 +97,7 @@ export default {
   - [vue-rx](https://github.com/vuejs/vue-rx) forces you to declare all observables at compile time. With the async filter, you can use functions that return an observable or promise. This is useful in v-for loops.
 * Smaller build (based on [webpack-bundle-analyzer](https://github.com/webpack-contrib/webpack-bundle-analyzer))
   - [vue-rx](https://github.com/vuejs/vue-rx): 3.07 KB gzipped
-  - `@tygr/vue-async-filter`: 472 B gzipped
+  - `@tygr/vue-async-filter`: 506 B gzipped
 
 ## Detriments
 

@@ -24,6 +24,28 @@ declare module 'vue' {
   }
 }
 
+const addAsyncDatum = (asyncDatum: Observable<any> | Promise<any>, key: string, vm: Vue) => {
+  if (!key) {
+    throw new Error(`Async filter requires a 'key' string parameter, none supplied`)
+  }
+
+  if (vm._observers[key] === undefined) {
+    Vue.util.defineReactive(vm._observers, key, null)
+
+    if (asyncDatum instanceof Promise) {
+      asyncDatum.then(val => vm._observers[key] = val)
+    } else if (asyncDatum.subscribe !== undefined) {
+      vm._subscription.add(
+        asyncDatum.subscribe(val => vm._observers[key] = val),
+      )
+    } else {
+      throw new Error(`Async filter: Datum with key '${key}' is not a promise or an observable`)
+    }
+  }
+
+  return vm._observers[key]
+}
+
 export const AsyncFilterMixin: VueConstructor | ComponentOptions<Vue> = {
   beforeCreate() {
     if (!this.$options.filters) {
@@ -34,27 +56,13 @@ export const AsyncFilterMixin: VueConstructor | ComponentOptions<Vue> = {
     this._subscription = new Subscription()
 
     this.$options.filters.async = (asyncDatum: Observable<any> | Promise<any>, key: string) => {
-
-      if (!key) {
-        throw new Error(`Async filter requires a 'key' string parameter, none supplied`)
-      }
-
-      if (this._observers[key] === undefined) {
-        Vue.util.defineReactive(this._observers, key, null)
-
-        if (asyncDatum instanceof Promise) {
-          asyncDatum.then(val => this._observers[key] = val)
-        } else if (asyncDatum.subscribe !== undefined) {
-          this._subscription.add(
-            asyncDatum.subscribe(val => this._observers[key] = val),
-          )
-        } else {
-          throw new Error(`Async filter: Datum with key '${key}' is not a promise or an observable`)
-        }
-      }
-
-      return this._observers[key]
+      return addAsyncDatum(asyncDatum, key, this)
     }
+  },
+  methods: {
+    $async(asyncDatum: Observable<any> | Promise<any>, key: string) {
+      return addAsyncDatum(asyncDatum, key, this)
+    },
   },
   beforeDestroy() {
     this._subscription.unsubscribe()
