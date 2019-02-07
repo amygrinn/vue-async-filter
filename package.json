@@ -1,6 +1,6 @@
 {
   "name": "@tygr/vue-async-filter",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A simple mixin that adds the async filter to vue",
   "main": "index.js",
   "types": "index.d.ts",
@@ -15,20 +15,31 @@
   },
   "keywords": [
     "async",
+    "filter",
+    "pipe",
     "observable",
+    "rxjs",
     "promise",
     "vue",
     "mixin"
   ],
   "author": "Tyler Grinn",
   "license": "ISC",
+  "repository": {
+    "url": "git+https://github.com/tylergrinn/vue-async-filter.git",
+    "type": "git"
+  },
+  "bugs": {
+    "url": "https://github.com/tylergrinn/vue-async-filter/issues"
+  },
+  "homepage": "https://github.com/tylergrinn/vue-async-filter#readme",
   "devDependencies": {
     "rxjs": "^6.4.0",
     "typescript": "^3.3.1",
     "vue": "^2.6.2"
   },
   "peerDependencies": {
-    "rxjs": "~6.4.0",
-    "vue": "~2.6.2"
+    "rxjs": "6",
+    "vue": "2"
   }
 }

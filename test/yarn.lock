@@ -715,9 +715,9 @@
     error-stack-parser "^2.0.0"
     string-width "^2.0.0"
 
-"@tygr/vue-async-filter@..\\tygr-vue-async-filter-v1.0.0.tgz":
-  version "1.0.0"
-  resolved "..\\tygr-vue-async-filter-v1.0.0.tgz#d578e44c0ab905de39a48592750a4c10340b093f"
+"@tygr/vue-async-filter@..\\tygr-vue-async-filter-v1.0.1.tgz":
+  version "1.0.1"
+  resolved "..\\tygr-vue-async-filter-v1.0.1.tgz#d1a29c3fc3182fbe69755e889e1b154c1d638978"
 
 "@types/blob-util@1.3.3":
   version "1.3.3"
