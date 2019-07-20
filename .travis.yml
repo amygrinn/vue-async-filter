@@ -1,0 +1,17 @@
+language: node_js
+node_js: 10
+
+addons:
+  apt:
+    packages:
+      - libgconf-2-4 # Required by cypress
+cache:
+  yarn: true
+  directories:
+    - ~/.cache # Required by cypress
+
+script:
+- yarn lint
+- yarn build
+- yarn load
+- yarn test

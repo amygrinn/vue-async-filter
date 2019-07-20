@@ -1,10 +1,21 @@
 <template>
   <div class="hello">
-    <h1>{{ interval | async('interval') }}</h1>
-    <h1>{{ getTimeoutPromise('Promise has resolved!') | async('timeout-promise') || 'loading...' }}</h1>
-    <h1 v-for="factor in $async(factors, 'factors')" :key="factor">
-      {{ getIntervalWithFactor(factor) | async('factor-' + factor) | negatize }}
+    
+    <h1 data-cy="observable">
+      {{ interval | async('interval') }}
     </h1>
+
+    <h1 data-cy="promise">
+      {{ getTimeoutPromise('Promise has resolved!') | async('timeout-promise') || 'loading...' }}
+    </h1>
+
+    <div data-cy="function">
+      <div 
+        v-for="factor in $async(factors, 'factors')"
+        :key="factor">
+        <input :placeholder="getIntervalWithFactor(factor) | async('factor-' + factor)">
+      </div>
+    </div>
   </div>
 </template>
 
@@ -25,6 +36,7 @@ export default Vue.extend({
   data: () => ({
     interval: interval(1000),
     factors: new Promise((resolve) => setTimeout(() => resolve([6, 7, 8, 9]), 1000)),
+    factorsKey: 'factors',
   }),
   methods: {
     getIntervalWithFactor(factor: number) {
@@ -47,20 +59,8 @@ export default Vue.extend({
 });
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped lang="scss">
-h3 {
+<style lang="scss">
+input {
   margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
 }
 </style>
