@@ -28,13 +28,13 @@
   "author": "Tyler Grinn",
   "license": "ISC",
   "repository": {
-    "url": "git+https://github.com/tygr-development/vue-async-filter.git",
+    "url": "git+https://github.com/tylergrinn/vue-async-filter.git",
     "type": "git"
   },
   "bugs": {
-    "url": "https://github.com/tygr-development/vue-async-filter/issues"
+    "url": "https://github.com/tylergrinn/vue-async-filter/issues"
   },
-  "homepage": "https://github.com/tygr-development/vue-async-filter#readme",
+  "homepage": "https://github.com/tylergrinn/vue-async-filter#readme",
   "devDependencies": {
     "rxjs": "^6.4.0",
     "tslint": "^5.18.0",

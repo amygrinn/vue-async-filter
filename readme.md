@@ -1,5 +1,7 @@
 # Vue Async Filter
 
+[![Build Status](https://travis-ci.org/tylergrinn/vue-async-filter.svg?branch=master)](https://travis-ci.org/tylergrinn/vue-async-filter)
+
 This mixin allows you to use promises and observables in your vue templates. This is meant to emulate angular's async pipe.
 
 ## [DEMO](http://vue-async-filter.surge.sh)
