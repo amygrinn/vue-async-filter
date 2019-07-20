@@ -8,7 +8,7 @@ addons:
 cache:
   yarn: true
   directories:
-    - ~/.cache # Required by cypress
+    - ~/test/.cache # Required by cypress
 
 script:
 - yarn lint
