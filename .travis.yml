@@ -4,14 +4,25 @@ node_js: 10
 addons:
   apt:
     packages:
-      - libgconf-2-4 # Required by cypress
+    - libgconf-2-4
+
 cache:
   yarn: true
   directories:
-    - ~/test/.cache # Required by cypress
+  - "~/test/.cache"
 
 script:
 - yarn lint
 - yarn build
 - yarn load
 - yarn test
+
+deploy:
+  provider: npm
+  email: tylergrinn@gmail.com
+  api_key:
+    secure: Nr1hJoPrd65xyI5c8KLlVWoZhFMnpsuGfVsqZF0axGkjyikYQG1rzcT1rvovnZfAh+cFP7bCYyeGRoIKh6EtUf4FM2l6vAa0JBld1WpVoRZA8/OQan0ymT0STh677ryshc9+Y/I/WY2kYlgo97HQmLIUELuMOXZqcDJdcr62zyU7+aqkx1wzLZNqynbfA6md5eoeMDe26HzFNGkcUBhwcidoxzVhQv9AkaOicXkRUZubHjuFACuVOr+MJkW3AnBt+64vms0tm23/8iLfDm75iEkz3415ThsLuueDp5oPAvjeynlm4C51EuhqPaXat+KnPhBVAROAct5YOY/y9jpPR0MB+8SdcI9/LT8jrioTGwPXDjIX2i4+Ft+Ip9HFLKPVONzywYaFrd8zXqTS5p3cvHzXufxD1naFG6CznziD/ZzPdH71pclNJFBaddE/5jcRLWN3VnG8V9ww5xjXRFeIjRPYSWzUNAPSkTV/xQ5hS4xcZ678U55p9mw7ICUGzNZIsQmcxcP9yVf01+nOgcANIXW/jM/gexNSldCU29E740OVSPvqkL6eeP1BZkMevp6hABbG0T6bsc/qQqEb0OLFcEHH7J7zaNzCmT9O9gvrH03jRYctLCJqoYsdJXJ/GERTG/PXwyEsj1qjXpavZN53KvtdMGnUSn98GWhx3FF7gqU=
+  on:
+    tags: true
+    repo: tylergrinn/vue-async-filter
+  skip_cleanup: true
