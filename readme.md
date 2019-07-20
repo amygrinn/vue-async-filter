@@ -2,6 +2,8 @@
 
 This mixin allows you to use promises and observables in your vue templates. This is meant to emulate angular's async pipe.
 
+## [DEMO](http://vue-async-filter.surge.sh)
+
 ## Installation
 
 ```
