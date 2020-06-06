@@ -100,8 +100,8 @@ export default {
 * Runtime creation of observables
   - [vue-rx](https://github.com/vuejs/vue-rx) forces you to declare all observables at compile time. With the async filter, you can use functions that return an observable or promise. This is useful in v-for loops.
 * Smaller build (based on [webpack-bundle-analyzer](https://github.com/webpack-contrib/webpack-bundle-analyzer))
-  - [vue-rx](https://github.com/vuejs/vue-rx): 3.07 KB gzipped
-  - `@tygr/vue-async-filter`: 506 B gzipped
+  - [vue-rx](https://github.com/vuejs/vue-rx): 3.06 KB gzipped
+  - `@tygr/vue-async-filter`: 511 B gzipped
 
 ## Detriments
 
