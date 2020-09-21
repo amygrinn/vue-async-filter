@@ -119,5 +119,5 @@ The 'vue' package in the root node_modules cannot be linked to the test project,
 cd test
 yarn remove @tygr/vue-async-filter
 yarn cache clean
-yarn add -D ../tygr-vue-async-filter-v0.0.1-beta.tgz
+yarn add -D ../vue-async-filter.tgz
 ```
