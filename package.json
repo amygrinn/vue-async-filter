@@ -1,6 +1,6 @@
 {
   "name": "@tygr/vue-async-filter",
-  "version": "1.1.2",
+  "version": "1.1.3",
   "description": "A simple mixin that adds the async filter to vue",
   "main": "index.js",
   "types": "index.d.ts",
